@@ -1,10 +1,11 @@
 import React from "react";
+import UserResults from "../components/users/UserResults";
 
 const Home = () => {
 	return (
-		<div>
-			<h1 className='text-xl'>Home</h1>
-		</div>
+		<>
+			<UserResults />
+		</>
 	);
 };
 
