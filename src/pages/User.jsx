@@ -1,17 +1,19 @@
 import React, { useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import GithubContext from "../context/github/GithubContext";
-import { toast } from "react-toastify";
 import Spinner from "../components/layout/Spinner";
+import RepoList from "../components/repos/RepoList";
 import { FaCode, FaStore, FaUserFriends, FaUsers } from "react-icons/fa";
 
 const User = () => {
-	const { user, getUser, loading } = useContext(GithubContext);
+	const { user, getUser, getUserRepos, repos, loading } =
+		useContext(GithubContext);
 
 	const params = useParams();
 
 	useEffect(() => {
 		getUser(params.login);
+		getUserRepos(params.login);
 	}, []);
 
 	const {
@@ -155,6 +157,7 @@ const User = () => {
 						</div>
 					</div>
 				</div>
+				<RepoList repos={repos} />
 			</div>
 		</>
 	);
