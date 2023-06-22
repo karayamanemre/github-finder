@@ -10,7 +10,7 @@ const UserItem = ({ user: { login, avatar_url } }) => {
 						<div className='rounded-full shadow w-14 h-14'>
 							<img
 								src={avatar_url}
-								alt='profile photo'
+								alt='profile'
 							/>
 						</div>
 					</div>
@@ -19,7 +19,7 @@ const UserItem = ({ user: { login, avatar_url } }) => {
 					<h2 className='card-title'>{login}</h2>
 					<Link
 						className='text-base-content text-opacity-40'
-						to={`/users/${login}`}>
+						to={`/user/${login}`}>
 						View Profile
 					</Link>
 				</div>

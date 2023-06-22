@@ -3,12 +3,16 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import User from "./pages/User";
 import NotFound from "./pages/NotFound";
 import { GithubProvider } from "./context/github/GithubContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 	return (
 		<GithubProvider>
+			<ToastContainer />
 			<Router>
 				<div className='flex flex-col justify-between h-screen'>
 					<Navbar />
@@ -21,6 +25,10 @@ function App() {
 							<Route
 								path='/about'
 								element={<About />}
+							/>
+							<Route
+								path='/user/:login'
+								element={<User />}
 							/>
 							<Route
 								path='/*'
