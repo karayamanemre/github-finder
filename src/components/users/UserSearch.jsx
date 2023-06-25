@@ -1,18 +1,21 @@
 import React, { useState, useContext } from "react";
 import GithubContext from "../../context/github/GithubContext";
+import { searchUsers } from "../../context/github/GithubActions";
 import { toast } from "react-toastify";
 
 const UserSearch = () => {
 	const [search, setSearch] = useState("");
 
-	const { users, searchUsers, clearUsers } = useContext(GithubContext);
+	const { users, dispatch, clearUsers } = useContext(GithubContext);
 
-	const onSubmit = (e) => {
+	const onSubmit = async (e) => {
 		e.preventDefault();
 		if (search === "") {
 			toast.error("Please enter something");
 		} else {
-			searchUsers(search);
+			dispatch({ type: "SET_LOADING", payload: true });
+			const users = await searchUsers(search);
+			dispatch({ type: "FETCH_USERS", payload: users });
 			setSearch("");
 		}
 	};
