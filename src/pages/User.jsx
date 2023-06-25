@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import GithubContext from "../context/github/GithubContext";
-import { getUser, getUserRepos } from "../context/github/GithubActions";
+import { getUserAndRepos } from "../context/github/GithubActions";
 import Spinner from "../components/layout/Spinner";
 import RepoList from "../components/repos/RepoList";
 import { FaCode, FaStore, FaUserFriends, FaUsers } from "react-icons/fa";
@@ -14,14 +14,12 @@ const User = () => {
 	useEffect(() => {
 		dispatch({ type: "SET_LOADING" });
 		const getUserData = async () => {
-			const userData = await getUser(params.login);
-			dispatch({ type: "GET_USER", payload: userData });
-
-			const userRepos = await getUserRepos(params.login);
-			dispatch({ type: "GET_REPOS", payload: userRepos });
+			const userData = await getUserAndRepos(params.login);
+			dispatch({ type: "GET_USER_AND_REPOS", payload: userData });
 		};
 
 		getUserData();
+		// eslint-disable-next-line
 	}, []);
 
 	const {
