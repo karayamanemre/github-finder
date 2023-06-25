@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 const UserSearch = () => {
 	const [search, setSearch] = useState("");
 
-	const { users, dispatch, clearUsers } = useContext(GithubContext);
+	const { users, dispatch } = useContext(GithubContext);
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
@@ -46,7 +46,7 @@ const UserSearch = () => {
 				<div>
 					<button
 						className='btn btn-ghost btn-lg'
-						onClick={clearUsers}>
+						onClick={() => dispatch({ type: "CLEAR_USERS" })}>
 						Clear
 					</button>
 				</div>
